@@ -57,6 +57,7 @@ def test_stylesheet_constrains_wide_content_and_mobile_controls() -> None:
     assert "grid-template-columns: 1fr" in narrow
     assert "grid-template-columns: repeat(2, minmax(0, 1fr))" in narrow
     assert "min-height: 2.45rem" in narrow
+    assert '[data-testid="stTabs"] [role="tablist"]' in narrow
 
 
 def test_sidebar_and_form_controls_have_narrow_width_rules() -> None:
@@ -66,6 +67,7 @@ def test_sidebar_and_form_controls_have_narrow_width_rules() -> None:
     assert ".ag-sidebar-brand" in css
     assert ".ag-sidebar-logo" in css
     assert "min-width: min(94vw, 24rem) !important" in css
+    assert '[data-testid="stSidebar"] > div:first-child' in css
     assert '[data-testid="stSelectbox"]' in css
     assert "max-width: 100%" in css
 
