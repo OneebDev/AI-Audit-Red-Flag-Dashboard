@@ -44,6 +44,29 @@ def test_stylesheet_stacks_columns_at_the_770px_breakpoint() -> None:
     assert "width: 100% !important" in responsive
 
 
+def test_stylesheet_constrains_wide_content_and_mobile_controls() -> None:
+    css = ui.GLASS_CSS
+
+    assert "overflow-x: hidden" in css
+    assert '[data-testid="stPlotlyChart"]' in css
+    assert '[data-testid="stDataFrame"]' in css
+    assert ".stButton > button, .stDownloadButton > button" in css
+    assert "white-space: normal" in css
+    assert "@media (max-width: 480px)" in css
+    narrow = css.split("@media (max-width: 480px)")[1]
+    assert "grid-template-columns: 1fr" in narrow
+    assert "grid-template-columns: repeat(2, minmax(0, 1fr))" in narrow
+    assert "min-height: 2.45rem" in narrow
+
+
+def test_sidebar_and_form_controls_have_narrow_width_rules() -> None:
+    css = ui.GLASS_CSS
+
+    assert '[data-testid="stSidebar"] { width: min(86vw, 21rem) !important; }' in css
+    assert '[data-testid="stSelectbox"]' in css
+    assert "max-width: 100%" in css
+
+
 def test_collapsed_sidebar_reopen_control_stays_visible() -> None:
     css = ui.GLASS_CSS
 

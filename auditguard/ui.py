@@ -43,6 +43,7 @@ GLASS_CSS = """
 }
 
 html, body, [class*="css"], .stApp { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+html, body, .stApp { min-width: 0; overflow-x: hidden; }
 
 .stApp {
     background: linear-gradient(160deg, #0f0c29 0%, #302b63 52%, #24243e 100%);
@@ -90,7 +91,9 @@ header[data-testid="stHeader"] { visibility: hidden; height: 0; }
 }
 [data-testid="stExpandSidebarButton"]:hover { background: rgba(34, 211, 238, 0.22); }
 [data-testid="stExpandSidebarButton"] svg { color: var(--ag-cyan); fill: var(--ag-cyan); }
-.block-container { max-width: 1360px; padding: 1.4rem 2rem 3rem; position: relative; z-index: 1; }
+.block-container { width: 100%; max-width: 1360px; min-width: 0; padding: 1.4rem 2rem 3rem; position: relative; z-index: 1; }
+[data-testid="stHorizontalBlock"], [data-testid="stVerticalBlock"], [data-testid="stColumn"] { min-width: 0; max-width: 100%; }
+[data-testid="stPlotlyChart"], [data-testid="stDataFrame"], [data-testid="stTable"] { width: 100%; max-width: 100%; min-width: 0; }
 
 h1, h2, h3, h4, h5, h6, p, span, label, li { color: var(--ag-text); }
 [data-testid="stMarkdownContainer"] p { color: #dcd9f2; }
@@ -286,6 +289,7 @@ hr { border-color: rgba(255, 255, 255, 0.12); }
     box-shadow: 0 18px 36px rgba(34, 211, 238, 0.30), 0 10px 26px rgba(124, 58, 237, 0.36);
 }
 .stButton > button:focus, .stDownloadButton > button:focus { box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.35); }
+.stButton > button, .stDownloadButton > button { width: 100%; min-width: 0; white-space: normal; }
 
 [data-testid="stFileUploader"] {
     padding: 0.6rem;
@@ -308,6 +312,11 @@ hr { border-color: rgba(255, 255, 255, 0.12); }
 [data-baseweb="popover"] [data-baseweb="menu"] { background: #241f45 !important; border: 1px solid var(--ag-border); }
 [data-baseweb="menu"] li { color: var(--ag-text) !important; }
 [data-baseweb="slider"] { padding-top: 0.35rem; }
+[data-testid="stFileUploader"], [data-testid="stTextInput"], [data-testid="stSelectbox"],
+[data-testid="stMultiSelect"], [data-testid="stDateInput"], [data-testid="stNumberInput"] {
+    min-width: 0;
+    max-width: 100%;
+}
 
 [data-testid="stTabs"] [role="tablist"] {
     gap: 0.4rem;
@@ -337,6 +346,7 @@ hr { border-color: rgba(255, 255, 255, 0.12); }
     box-shadow: 0 6px 18px rgba(34, 211, 238, 0.14);
 }
 [data-testid="stTabs"] [data-testid="stTab"] p { color: inherit; font-weight: inherit; }
+[data-testid="stTabs"] [data-testid="stTab"] { min-width: 0; white-space: normal; text-align: center; }
 [data-testid="stTabs"] [data-testid="stTabsScrollLeft"],
 [data-testid="stTabs"] [data-testid="stTabsScrollRight"],
 [data-testid="stTabs"] .react-aria-SelectionIndicator { display: none; }
@@ -379,6 +389,8 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
 
 @media (max-width: 770px) {
     .block-container { padding: 0.9rem 0.75rem 2rem; }
+    [data-testid="stSidebar"] { width: min(86vw, 21rem) !important; }
+    [data-testid="stSidebar"] .block-container { padding: 1rem 0.8rem 1.5rem; }
     .ag-hero { padding: 1.4rem 1.1rem; border-radius: 20px; }
     .ag-hero-top { flex-direction: column; }
     .ag-kpi-value { font-size: 1.38rem; }
@@ -390,8 +402,45 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
         width: 100% !important;
         min-width: 100% !important;
     }
-    [data-testid="stTabs"] [data-baseweb="tab-list"] { border-radius: 18px; }
-    [data-testid="stTabs"] button[data-baseweb="tab"] { padding: 0.4rem 0.7rem; font-size: 0.86rem; }
+    [data-testid="stTabs"] [data-baseweb="tab-list"] {
+        width: 100%;
+        border-radius: 18px;
+        gap: 0.25rem;
+    }
+    [data-testid="stTabs"] [data-testid="stTab"] {
+        flex: 1 1 30%;
+        padding: 0.4rem 0.55rem;
+        font-size: 0.86rem;
+    }
+    [data-testid="stPlotlyChart"] { min-height: 0; }
+    [data-testid="stDataFrame"] { overflow-x: auto; }
+}
+
+@media (max-width: 480px) {
+    .block-container { padding: 0.7rem 0.55rem 1.5rem; }
+    .ag-hero { padding: 1.1rem 0.85rem; }
+    .ag-logo { font-size: clamp(2rem, 12vw, 2.7rem); }
+    .ag-tagline { font-size: 0.9rem; }
+    .ag-card { padding: 0.9rem; border-radius: 16px; }
+    .ag-kpi { padding: 0.8rem; }
+    .ag-kpi-value { font-size: 1.2rem; }
+    .ag-detail-grid { grid-template-columns: 1fr; }
+    [data-testid="stTabs"] [data-baseweb="tab-list"] {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        padding: 0.28rem;
+        gap: 0.28rem;
+        border-radius: 20px;
+    }
+    [data-testid="stTabs"] [data-testid="stTab"] {
+        width: 100%;
+        min-height: 2.45rem;
+        padding: 0.42rem 0.35rem;
+        font-size: 0.78rem;
+        line-height: 1.15;
+    }
+    .stButton > button, .stDownloadButton > button { min-height: 2.5rem; }
 }
 </style>
 """
