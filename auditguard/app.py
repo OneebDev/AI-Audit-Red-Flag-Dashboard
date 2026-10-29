@@ -559,8 +559,14 @@ def _reset_advanced() -> None:
 def _render_sidebar() -> None:
     """Render dataset controls, localization settings, Groq settings, and tuning."""
     with st.sidebar:
-        st.markdown("## AuditGuard")
-        st.caption("AI-powered audit red-flag detection · Karachi, Pakistan")
+        st.markdown(
+            '<div class="ag-sidebar-brand">'
+            '<div class="ag-sidebar-mark">AG</div>'
+            '<div><div class="ag-sidebar-logo">AuditGuard</div>'
+            '<div class="ag-sidebar-tagline">AI-powered audit red-flag detection · Karachi, Pakistan</div></div>'
+            "</div>",
+            unsafe_allow_html=True,
+        )
         st.divider()
 
         st.markdown("### Data source")

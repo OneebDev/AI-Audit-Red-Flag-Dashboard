@@ -101,6 +101,8 @@ a { color: var(--ag-cyan); }
 hr { border-color: rgba(255, 255, 255, 0.12); }
 
 [data-testid="stSidebar"] {
+    width: min(24rem, 94vw) !important;
+    min-width: min(24rem, 94vw) !important;
     background: rgba(18, 14, 45, 0.72);
     border-right: 1px solid var(--ag-border);
     backdrop-filter: blur(22px) saturate(140%);
@@ -108,6 +110,42 @@ hr { border-color: rgba(255, 255, 255, 0.12); }
 }
 [data-testid="stSidebar"] .block-container { padding: 1.4rem 1.1rem 2rem; }
 [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 { letter-spacing: -0.02em; }
+.ag-sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    padding: 0.1rem 0 0.2rem;
+}
+.ag-sidebar-mark {
+    display: inline-flex;
+    flex: 0 0 2.7rem;
+    width: 2.7rem;
+    height: 2.7rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(103, 232, 249, 0.45);
+    border-radius: 14px;
+    background: linear-gradient(145deg, rgba(34, 211, 238, 0.28), rgba(124, 58, 237, 0.55));
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    box-shadow: 0 8px 22px rgba(34, 211, 238, 0.18);
+}
+.ag-sidebar-logo {
+    color: #ffffff;
+    font-size: 1.22rem;
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+}
+.ag-sidebar-tagline {
+    margin-top: 0.28rem;
+    color: #bdb9dc;
+    font-size: 0.7rem;
+    line-height: 1.35;
+}
 
 .ag-hero {
     position: relative;
@@ -389,7 +427,10 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
 
 @media (max-width: 770px) {
     .block-container { padding: 0.9rem 0.75rem 2rem; }
-    [data-testid="stSidebar"] { width: min(86vw, 21rem) !important; }
+    [data-testid="stSidebar"] {
+        width: min(94vw, 24rem) !important;
+        min-width: min(94vw, 24rem) !important;
+    }
     [data-testid="stSidebar"] .block-container { padding: 1rem 0.8rem 1.5rem; }
     .ag-hero { padding: 1.4rem 1.1rem; border-radius: 20px; }
     .ag-hero-top { flex-direction: column; }
@@ -425,6 +466,10 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
     .ag-kpi { padding: 0.8rem; }
     .ag-kpi-value { font-size: 1.2rem; }
     .ag-detail-grid { grid-template-columns: 1fr; }
+    .ag-sidebar-brand { gap: 0.6rem; }
+    .ag-sidebar-mark { flex-basis: 2.4rem; width: 2.4rem; height: 2.4rem; }
+    .ag-sidebar-logo { font-size: 1.08rem; }
+    .ag-sidebar-tagline { font-size: 0.66rem; }
     [data-testid="stTabs"] [data-baseweb="tab-list"] {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));

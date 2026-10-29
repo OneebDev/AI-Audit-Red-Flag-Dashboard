@@ -62,7 +62,10 @@ def test_stylesheet_constrains_wide_content_and_mobile_controls() -> None:
 def test_sidebar_and_form_controls_have_narrow_width_rules() -> None:
     css = ui.GLASS_CSS
 
-    assert '[data-testid="stSidebar"] { width: min(86vw, 21rem) !important; }' in css
+    assert 'width: min(24rem, 94vw) !important' in css
+    assert ".ag-sidebar-brand" in css
+    assert ".ag-sidebar-logo" in css
+    assert "min-width: min(94vw, 24rem) !important" in css
     assert '[data-testid="stSelectbox"]' in css
     assert "max-width: 100%" in css
 
