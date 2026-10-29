@@ -66,8 +66,11 @@ def test_sidebar_and_form_controls_have_narrow_width_rules() -> None:
     assert 'width: min(24rem, 94vw) !important' in css
     assert ".ag-sidebar-brand" in css
     assert ".ag-sidebar-logo" in css
-    assert "min-width: min(94vw, 24rem) !important" in css
+    assert "min-width: 100vw !important" in css
     assert '[data-testid="stSidebar"] > div:first-child' in css
+    assert "width: 100vw !important" in css
+    assert 'data-testid="stSidebarCollapseButton"' in css
+    assert "right: 0.7rem" in css
     assert '[data-testid="stSelectbox"]' in css
     assert "max-width: 100%" in css
 
