@@ -162,6 +162,24 @@ def test_risk_donut_labels_include_shares_and_stay_inside_the_ring() -> None:
     assert donut.layout.margin.b >= 56
 
 
+def test_flagged_display_styles_normal_tables() -> None:
+    display = pd.DataFrame({"Risk Level": ["High"]})
+
+    rendered = app._flagged_display_table(display)
+
+    assert isinstance(rendered, pd.io.formats.style.Styler)
+
+
+def test_flagged_display_bypasses_styling_for_large_tables() -> None:
+    display = pd.DataFrame(
+        {"Risk Level": ["High"] * (app.FLAGGED_STYLE_MAX_ROWS + 1)}
+    )
+
+    rendered = app._flagged_display_table(display)
+
+    assert rendered is display
+
+
 def test_rendered_interface_uses_rupees_not_dollars() -> None:
     test = _demo_app()
 

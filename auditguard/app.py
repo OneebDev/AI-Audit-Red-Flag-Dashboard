@@ -80,6 +80,7 @@ GROQ_TEMPERATURE = 0.2
 GROQ_MAX_TOKENS = 220
 DEFAULT_LANGUAGE = "English"
 LANGUAGES = ("English", "Roman Urdu")
+FLAGGED_STYLE_MAX_ROWS = 500
 
 GROQ_STATUS_TEXT = {
     "valid": "Key works.",
@@ -717,10 +718,10 @@ def _render_sidebar() -> None:
                 "disk, logs, the Excel report, or error messages."
             )
             st.text_input(
-                "Add key(s)",
+                "Add Groq key",
                 type="password",
                 key="groq_key_input",
-                placeholder="gsk_... (one per line)",
+                placeholder="gsk_... (paste one key at a time)",
                 label_visibility="collapsed",
             )
             st.button("Add key", on_click=_add_groq_keys, width="stretch")
@@ -1363,6 +1364,13 @@ def _related_duplicate(checked: pd.DataFrame, row: pd.Series) -> str | None:
     )
 
 
+def _flagged_display_table(display: pd.DataFrame) -> pd.DataFrame:
+    """Apply risk styling only to tables small enough for Streamlit's Styler limit."""
+    if len(display) > FLAGGED_STYLE_MAX_ROWS:
+        return display
+    return display.style.map(_risk_cell, subset=["Risk Level"])
+
+
 def _render_flagged(checked: pd.DataFrame | None) -> None:
     """Render filters, the risk-ranked table, and the entry detail card."""
     if checked is None:
@@ -1495,9 +1503,8 @@ def _render_flagged(checked: pd.DataFrame | None) -> None:
             "Description": filtered["Description"].fillna("").to_numpy(),
         }
     )
-    styled = display.style.map(_risk_cell, subset=["Risk Level"])
     st.dataframe(
-        styled,
+        _flagged_display_table(display),
         hide_index=True,
         width="stretch",
         height=min(620, max(120, 45 + 34 * len(display))),
