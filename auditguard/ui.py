@@ -402,8 +402,16 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
         width: 100% !important;
         min-width: 100% !important;
     }
-    [data-testid="stTabs"] [data-baseweb="tab-list"] { border-radius: 18px; }
-    [data-testid="stTabs"] [data-testid="stTab"] { flex: 1 1 auto; padding: 0.4rem 0.7rem; font-size: 0.86rem; }
+    [data-testid="stTabs"] [data-baseweb="tab-list"] {
+        width: 100%;
+        border-radius: 18px;
+        gap: 0.25rem;
+    }
+    [data-testid="stTabs"] [data-testid="stTab"] {
+        flex: 1 1 30%;
+        padding: 0.4rem 0.55rem;
+        font-size: 0.86rem;
+    }
     [data-testid="stPlotlyChart"] { min-height: 0; }
     [data-testid="stDataFrame"] { overflow-x: auto; }
 }
@@ -417,7 +425,21 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
     .ag-kpi { padding: 0.8rem; }
     .ag-kpi-value { font-size: 1.2rem; }
     .ag-detail-grid { grid-template-columns: 1fr; }
-    [data-testid="stTabs"] [data-testid="stTab"] { flex: 1 1 45%; padding: 0.42rem 0.45rem; font-size: 0.78rem; }
+    [data-testid="stTabs"] [data-baseweb="tab-list"] {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        padding: 0.28rem;
+        gap: 0.28rem;
+        border-radius: 20px;
+    }
+    [data-testid="stTabs"] [data-testid="stTab"] {
+        width: 100%;
+        min-height: 2.45rem;
+        padding: 0.42rem 0.35rem;
+        font-size: 0.78rem;
+        line-height: 1.15;
+    }
     .stButton > button, .stDownloadButton > button { min-height: 2.5rem; }
 }
 </style>

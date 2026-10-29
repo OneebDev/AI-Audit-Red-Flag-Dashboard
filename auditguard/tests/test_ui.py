@@ -55,7 +55,8 @@ def test_stylesheet_constrains_wide_content_and_mobile_controls() -> None:
     assert "@media (max-width: 480px)" in css
     narrow = css.split("@media (max-width: 480px)")[1]
     assert "grid-template-columns: 1fr" in narrow
-    assert "flex: 1 1 45%" in narrow
+    assert "grid-template-columns: repeat(2, minmax(0, 1fr))" in narrow
+    assert "min-height: 2.45rem" in narrow
 
 
 def test_sidebar_and_form_controls_have_narrow_width_rules() -> None:
