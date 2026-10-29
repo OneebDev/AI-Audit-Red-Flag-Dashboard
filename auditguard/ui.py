@@ -303,13 +303,21 @@ hr { border-color: rgba(255, 255, 255, 0.12); }
 .ag-empty h3 { margin: 0.8rem 0 0.35rem; font-size: 1.05rem; }
 .ag-empty p { max-width: 560px; margin: 0 auto; color: var(--ag-muted); font-size: 0.9rem; line-height: 1.65; }
 
-.ag-schema { margin-top: 0.6rem; }
-.ag-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+.ag-schema {
+    margin-top: 0.6rem;
+    padding: 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 4px;
+    background: rgba(15, 12, 41, 0.18);
+}
+.ag-tags { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-top: 0.5rem; }
 .ag-tag {
-    padding: 0.24rem 0.52rem; border-radius: 8px;
+    display: inline-flex; align-items: center;
+    padding: 0.24rem 0.52rem; border-radius: 4px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.07);
     color: #dcd9f2; font-family: ui-monospace, Consolas, monospace; font-size: 0.73rem;
+    line-height: 1.25;
 }
 .ag-tag.optional { border-style: dashed; color: #b8b4d8; }
 .ag-note { color: var(--ag-muted); font-size: 0.8rem; line-height: 1.6; }

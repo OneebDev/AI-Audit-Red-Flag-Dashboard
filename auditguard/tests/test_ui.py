@@ -117,6 +117,16 @@ def test_tabs_use_separate_tag_like_buttons() -> None:
     assert "background: rgba(255, 255, 255, 0.07)" in tab_rule
 
 
+def test_schema_uses_square_outer_and_tag_boxes() -> None:
+    css = ui.GLASS_CSS
+
+    schema_rule = css.split(".ag-schema {", 1)[1].split("}", 1)[0]
+    tag_rule = css.split(".ag-tag {", 1)[1].split("}", 1)[0]
+    assert "border-radius: 4px" in schema_rule
+    assert "border-radius: 4px" in tag_rule
+    assert "display: inline-flex" in tag_rule
+
+
 def test_inject_css_adds_the_three_orbs(monkeypatch) -> None:
     captured = _capture(monkeypatch)
 
