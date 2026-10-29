@@ -368,29 +368,33 @@ hr { border-color: rgba(255, 255, 255, 0.12); }
 
 [data-testid="stTabs"] [role="tablist"] {
     gap: 0.4rem;
-    padding: 0.32rem;
-    border: 1px solid var(--ag-border);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(16px);
-    width: fit-content;
+    padding: 0.1rem 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    width: 100%;
     max-width: 100%;
     flex-wrap: wrap;
     overflow: visible;
     height: auto;
 }
 [data-testid="stTabs"] [data-testid="stTab"] {
-    border-radius: 999px;
-    padding: 0.42rem 1rem;
+    flex: 0 1 auto;
+    min-height: 2.45rem;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    border-radius: 10px;
+    padding: 0.42rem 0.8rem;
     color: #bdb9dc;
     font-weight: 600;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.07);
     cursor: pointer;
+    box-sizing: border-box;
 }
 [data-testid="stTabs"] [data-testid="stTab"]:hover { color: #ffffff; }
 [data-testid="stTabs"] [data-testid="stTab"][aria-selected="true"] {
     color: #ffffff;
-    background: linear-gradient(135deg, rgba(34, 211, 238, 0.32), rgba(124, 58, 237, 0.42));
+    border-color: rgba(103, 232, 249, 0.48);
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.45), rgba(124, 58, 237, 0.56));
     box-shadow: 0 6px 18px rgba(34, 211, 238, 0.14);
 }
 [data-testid="stTabs"] [data-testid="stTab"] p { color: inherit; font-weight: inherit; }
@@ -479,9 +483,10 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
         width: 100% !important;
         min-width: 100% !important;
     }
-    [data-testid="stTabs"] [data-baseweb="tab-list"] {
+    [data-testid="stTabs"] [data-baseweb="tab-list"],
+    [data-testid="stTabs"] [role="tablist"] {
         width: 100%;
-        border-radius: 18px;
+        border-radius: 0;
         gap: 0.25rem;
     }
     [data-testid="stTabs"] [data-testid="stTab"] {
@@ -512,9 +517,9 @@ div[data-testid="stToast"] { background: #241f45; color: var(--ag-text); border:
         grid-template-columns: repeat(2, minmax(0, 1fr));
         width: 100%;
         max-width: 100%;
-        padding: 0.28rem;
+        padding: 0.1rem 0;
         gap: 0.28rem;
-        border-radius: 20px;
+        border-radius: 0;
     }
     [data-testid="stTabs"] [data-testid="stTab"] {
         width: 100%;

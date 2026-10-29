@@ -106,6 +106,17 @@ def test_tab_bar_wraps_instead_of_scrolling_labels_away() -> None:
     assert "overflow: visible" in rule
 
 
+def test_tabs_use_separate_tag_like_buttons() -> None:
+    css = ui.GLASS_CSS
+
+    tab_rule = css.split(
+        '[data-testid="stTabs"] [data-testid="stTab"] {', 1
+    )[1].split("}", 1)[0]
+    assert "border-radius: 10px" in tab_rule
+    assert "border: 1px solid" in tab_rule
+    assert "background: rgba(255, 255, 255, 0.07)" in tab_rule
+
+
 def test_inject_css_adds_the_three_orbs(monkeypatch) -> None:
     captured = _capture(monkeypatch)
 
